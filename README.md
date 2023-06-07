@@ -6,7 +6,10 @@
 
 1. Clone the project
 2. Copy the `.env.template` file and rename it to `.env`
-3. Up the image (Docker desktop)
+3. In `.env`
+   DB_HOST=db (db = It's service of postgres in docker-compose.yml)
+   DB_PASSWORD=postgres (postgres is an example)
+4. Up the image (Docker desktop)
 
 ```
 docker-compose -f docker-compose.yml --env-file .env up --build
@@ -28,7 +31,7 @@ localhost:4000/graphql
 npm install
 ```
 
-4. Configure Postgres DB in .env
+4. Configure Postgres DB in `.env`
 
 5. Up the backend of Nest
 
