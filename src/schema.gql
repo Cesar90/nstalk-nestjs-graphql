@@ -1,0 +1,289 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AllCategoriesOutput {
+  error: String
+  ok: Boolean!
+  categories: [Category!]
+}
+
+type Category {
+  id: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  coverImage: String
+  slug: String!
+  restaurants: [Restaurant!]
+  restaurantCount: Int!
+}
+
+input CategoryInput {
+  page: Int = 1
+  slug: String!
+}
+
+type CategoryOutput {
+  error: String
+  ok: Boolean!
+  totalPages: Int
+  totalResults: Int
+  restaurants: [Restaurant!]
+  category: Category
+}
+
+input CreateAccountInput {
+  email: String!
+  password: String!
+  role: UserRole!
+}
+
+type CreateAccountOutput {
+  error: String
+  ok: Boolean!
+}
+
+input CreateDishInput {
+  name: String!
+  price: Int!
+  description: String!
+  options: [DishOptionInputType!]
+  restaurantId: Int!
+}
+
+type CreateDishOutput {
+  error: String
+  ok: Boolean!
+}
+
+type CreateRestauranOutput {
+  error: String
+  ok: Boolean!
+  restaurantId: Int!
+}
+
+input CreateRestaurantInput {
+  name: String!
+  coverImage: String!
+  address: String = ""
+  categoryName: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input DeleteDishInput {
+  dishId: Int!
+}
+
+type DeleteDishOutput {
+  error: String
+  ok: Boolean!
+}
+
+input DeleteRestaurantInput {
+  restaurantId: Float!
+}
+
+type DeleteRestaurantOutput {
+  error: String
+  ok: Boolean!
+}
+
+type Dish {
+  id: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  price: Int!
+  photo: String
+  description: String!
+  restaurant: Restaurant!
+  options: [DishOption!]
+}
+
+type DishChoice {
+  name: String!
+  extra: Int
+}
+
+input DishChoiceInputType {
+  name: String!
+  extra: Int
+}
+
+type DishOption {
+  name: String!
+  choices: [DishChoice!]
+  extra: Int
+}
+
+input DishOptionInputType {
+  name: String!
+  choices: [DishChoiceInputType!]
+  extra: Int
+}
+
+input EditDishInput {
+  name: String
+  price: Int
+  description: String
+  options: [DishOptionInputType!]
+  dishId: Int!
+}
+
+type EditDishOutput {
+  error: String
+  ok: Boolean!
+}
+
+input EditProfileInput {
+  email: String
+  password: String
+}
+
+type EditProfileOutput {
+  error: String
+  ok: Boolean!
+}
+
+input EditRestaurantInput {
+  name: String
+  coverImage: String
+  address: String = ""
+  categoryName: String
+  restaurantId: ID!
+}
+
+type EditRestaurantOutput {
+  error: String
+  ok: Boolean!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type LoginOutput {
+  error: String
+  ok: Boolean!
+  token: String
+}
+
+type Mutation {
+  createRestaurant(input: CreateRestaurantInput!): CreateRestauranOutput!
+  editRestaurant(input: EditRestaurantInput!): EditRestaurantOutput!
+  deleteRestaurant(input: DeleteRestaurantInput!): DeleteRestaurantOutput!
+  createRestaurantMultpleParams(ownersName: String!, address: String!, isVegan: Boolean!, name: String!): Boolean!
+  createDish(input: CreateDishInput!): CreateDishOutput!
+  editDish(input: EditDishInput!): EditDishOutput!
+  deleteDish(input: DeleteDishInput!): DeleteDishOutput!
+  createAccount(input: CreateAccountInput!): CreateAccountOutput!
+  login(input: LoginInput!): LoginOutput!
+  editProfile(input: EditProfileInput!): EditProfileOutput!
+}
+
+input MyRestaurantInput {
+  id: Float!
+}
+
+type MyRestaurantOutput {
+  error: String
+  ok: Boolean!
+  restaurant: Restaurant
+}
+
+type MyRestaurantsOutput {
+  error: String
+  ok: Boolean!
+  restaurants: [Restaurant!]!
+}
+
+type Query {
+  getPizzaBoolean: Boolean!
+  myRestaurants: MyRestaurantsOutput!
+  myRestaurant(input: MyRestaurantInput!): MyRestaurantOutput!
+  restaurants(input: RestaurantsInput!): RestaurantsOutput!
+  restaurant(input: RestaurantInput!): RestaurantOutput!
+  searchRestaurant(input: SearchRestaurantInput!): SearchRestaurantOutput!
+  allCategories: AllCategoriesOutput!
+  category(input: CategoryInput!): CategoryOutput!
+  me: User!
+  userProfile(userId: Float!): UserProfileOutput!
+}
+
+type Restaurant {
+  id: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  coverImage: String!
+  address: String!
+  category: Category
+  owner: User!
+  menu: [Dish!]
+  isPromoted: Boolean!
+  promotedUntil: DateTime
+}
+
+input RestaurantInput {
+  restaurantId: Int!
+}
+
+type RestaurantOutput {
+  error: String
+  ok: Boolean!
+  restaurant: Restaurant
+}
+
+input RestaurantsInput {
+  page: Int = 1
+}
+
+type RestaurantsOutput {
+  error: String
+  ok: Boolean!
+  totalPages: Int
+  totalResults: Int
+  results: [Restaurant!]
+}
+
+input SearchRestaurantInput {
+  page: Int = 1
+  query: String!
+}
+
+type SearchRestaurantOutput {
+  error: String
+  ok: Boolean!
+  totalPages: Int
+  totalResults: Int
+  restaurants: [Restaurant!]
+}
+
+type User {
+  id: Float!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  email: String!
+  password: String!
+  role: UserRole!
+  verified: Boolean!
+  restaurants: [Restaurant!]
+}
+
+type UserProfileOutput {
+  error: String
+  ok: Boolean!
+  user: User
+}
+
+enum UserRole {
+  Client
+  Owner
+  Delivery
+}

@@ -1,0 +1,42 @@
+version: '3'
+
+services: 
+  db:
+    image: postgres:14.4
+    restart: always
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    container_name: nubereatsbeDB
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+
+  nubereatsbe:
+    depends_on:
+      - db
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: nest-graphql
+    container_name: nubereatsbe
+    restart: always
+    ports:
+      - "${PORT}:${PORT}"
+    volumes:
+      - ./:/app
+
+    environment:
+      STATE: ${STATE}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USERNAME: ${DB_USERNAME}
+      PRIVATE_KEY: ${PRIVATE_KEY}
+      JWT_SECRET: ${JWT_SECRET}
+      AWS_KEY: ${AWS_KEY}
+      AWS_SECRET: ${AWS_SECRET}
+      PORT: ${PORT}
+      NODE_ENV: ${NODE_ENV}

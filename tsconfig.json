@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "src/*": ["src/*"],
+      "@restaurants": ["./src/restaurants/restaurants"],
+      "@restaurants/*": ["./src/restaurants/restaurants/*"],
+      // "@common": ["framework/common"],
+      // "@common/*": ["framework/common/*"],
+      // "@framework": ["framework/shopify"],
+      // "@framework/*": ["framework/shopify/*"],
+      // "@components/*": ["components/*"],
+      // "@assets/*": ["assets/*"],
+      // "@lib/*": ["lib/*"]
+    },
+  }
+}
