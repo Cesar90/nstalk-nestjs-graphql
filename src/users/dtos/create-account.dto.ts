@@ -9,4 +9,6 @@ export class CreateAccountInput extends PickType(User, ["email","password","role
 
 @ObjectType()
 export class CreateAccountOutput extends CommonDtoOuput{
+  @Field(type => User)
+  user?: User;
 }

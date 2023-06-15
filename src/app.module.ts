@@ -14,6 +14,7 @@ import { CommonModule } from './common/common.module';
 import { JwtModule } from './jwt/jwt.module';
 import { AuthModule } from './auth/auth.module';
 import { UploadsModule } from './uploads/uploads.module';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -63,6 +64,7 @@ import { UploadsModule } from './uploads/uploads.module';
     AuthModule,
     CommonModule,
     UploadsModule,
+    SeedModule
   ],
   controllers: [],
   providers: [],

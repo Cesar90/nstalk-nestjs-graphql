@@ -42,6 +42,7 @@ input CreateAccountInput {
 type CreateAccountOutput {
   error: String
   ok: Boolean!
+  user: User!
 }
 
 input CreateDishInput {

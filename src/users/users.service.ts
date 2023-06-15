@@ -32,7 +32,7 @@ export class UsersService {
         }
       }
       const user = await this.users.save(this.users.create({ email, password, role }));
-      return { ok: true }
+      return { ok: true , user}
     } catch (error) {
       return {
         ok: false,
